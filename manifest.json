@@ -1,0 +1,86 @@
+{
+  // Required
+  "manifest_version": 2,
+  "name": "Class Dojo Plus",
+  "version": "0.2",
+
+  // Recommended
+  //"default_locale": "en",
+  "description": "Useful hacks to the already excellent Class Dojo. Allows for class arrangements (saved per computer), hotkeys for students/behaviors, quick points via mouse wheel, and more!",
+  "icons": {"16": "icon16.png",
+  "32": "icon32.png",
+  "48": "icon48.png",
+  "128": "icon128.png" },
+
+  // Pick one (or none)
+ // "browser_action": {...},
+  "page_action": {"default_icon": "icon48.png", 
+  "default_title": "ClassDojo Plus!",
+  "default_popup": "popup.html"},
+
+  // Optional
+  "author": "Ryan Meyers",
+  //"automation": ...,
+  "background": {
+    "scripts": ["background.js"],
+    // Recommended
+    "persistent": false
+  },
+ // "background_page": ...,
+ // "chrome_settings_overrides": {...},
+ // "chrome_ui_overrides": {
+ //   "bookmarks_ui": {
+ //     "remove_bookmark_shortcut": true,
+ //     "remove_button": true
+ //   }
+ // },
+ // "chrome_url_overrides": {...},
+ // "commands": {...},
+ // "content_pack": ...,
+ "content_scripts": [{ "matches": ["*://teach.classdojo.com/*"],
+     // "css": ["mystyles.css"],
+      "js": ["jquery-1.11.2.min.js","userscripter.js"]}],
+ // "content_security_policy": "policyString",
+//  "converted_from_user_script": ...,
+ // "current_locale": ...,
+ // "devtools_page": "devtools.html",
+//  "externally_connectable": {
+//    "matches": ["*://*.example.com/*"]
+ // },
+//  "file_browser_handlers": [...],
+ // "homepage_url": "http://path/to/homepage",
+//  "import": ...,
+//  "incognito": "spanning or split",
+//  "input_components": ...,
+ // "key": "publicKey",
+//  "minimum_chrome_version": "versionString",
+ // "nacl_modules": [...],
+  //"oauth2": ...,
+ // "offline_enabled": true,
+ // "omnibox": {
+  //  "keyword": "aString"
+ // },
+ // "optional_permissions": ["tabs"],
+ // "options_page": "options.html",
+ // "options_ui": {
+ //   "chrome_style": true,
+ //   "page": "options.html"
+ // },
+  "permissions": ["declarativeContent", "tabs", "activeTab", "storage", "*://teach.classdojo.com/*"],
+//  "platforms": ...,
+//  "plugins": [...],
+//  "requirements": {...},
+//  "sandbox": [...],
+ // "script_badge": ...,
+  
+ // "signature": ...,
+ // "spellcheck": ...,
+ // "storage": {
+ //   "managed_schema": "schema.json"
+//  },
+ // "system_indicator": ...,
+ // "tts_engine": {...},
+//  "update_url": "http://path/to/updateInfo.xml",
+  "web_accessible_resources": ["class-dojo-plus.js"],
+"short_name": "ClassDojo+"
+}
