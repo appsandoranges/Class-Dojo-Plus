@@ -2,7 +2,7 @@
   // Required
   "manifest_version": 2,
   "name": "Class Dojo Plus",
-  "version": "0.2",
+  "version": "0.21",
 
   // Recommended
   //"default_locale": "en",
@@ -16,7 +16,7 @@
  // "browser_action": {...},
   "page_action": {"default_icon": "icon48.png", 
   "default_title": "ClassDojo Plus!",
-  "default_popup": "popup.html"},
+  "default_popup": "options.html"},
 
   // Optional
   "author": "Ryan Meyers",
@@ -62,10 +62,10 @@
  // },
  // "optional_permissions": ["tabs"],
  // "options_page": "options.html",
- // "options_ui": {
- //   "chrome_style": true,
- //   "page": "options.html"
- // },
+  "options_ui": {
+    "chrome_style": true,
+    "page": "options.html"
+  },
   "permissions": ["declarativeContent", "tabs", "activeTab", "storage", "*://teach.classdojo.com/*"],
 //  "platforms": ...,
 //  "plugins": [...],
@@ -81,6 +81,6 @@
  // "system_indicator": ...,
  // "tts_engine": {...},
 //  "update_url": "http://path/to/updateInfo.xml",
-  "web_accessible_resources": ["class-dojo-plus.js"],
+  "web_accessible_resources": ["class-dojo-plus.js", "TweenMax.min.js", "Draggable.min.js"],
 "short_name": "ClassDojo+"
 }

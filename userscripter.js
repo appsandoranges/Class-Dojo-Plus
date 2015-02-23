@@ -1,3 +1,8 @@
+var g = document.createElement('script'); 
+var s = document.getElementsByTagName('script')[0]; 
+g.text = "var isChromeExtension = true;" 
+s.parentNode.insertBefore(g, s);
+
 var script = document.createElement("script");
     script.setAttribute("src", chrome.extension.getURL("class-dojo-plus.js"));
 

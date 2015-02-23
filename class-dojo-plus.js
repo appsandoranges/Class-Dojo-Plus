@@ -1,16 +1,17 @@
 // ==UserScript==
 // @name         Class Dojo Plus
 // @namespace    https://greasyfork.org/en/scripts/7873-class-dojo-plus
-// @version      2015.02.13
+// @version      2015.02.21
 // @description  Useful hacks to the already excellent Class Dojo 
 // @author       Ryan Meyers
+// @icon          http://appsandoranges.github.io/Class-Dojo-Plus/images/icon.png
 // @match        http://teach.classdojo.com/*
 // @match		 https://teach.classdojo.com/*
 // @grant        none
 // ==/UserScript==
 /*!
  * Class Dojo Plus
- * https://github.com/
+ * http://appsandoranges.github.io/Class-Dojo-Plus/
  *
  * Allows for class arrangements (saved per computer), hotkeys for students/behaviors,
  * quick points via mouse wheel, and more!
@@ -20,8 +21,10 @@
  * Dual licensed under the MIT or GPL Version 2 licenses.
  *
  */
+
+
  debugging = true;
- show_ajax = false;
+ show_ajax = true;
 
 if(!debugging)
 {
@@ -38,6 +41,7 @@ if(!debugging)
 
 if (bowser.chrome) { // XHook is pretty great, so if it's Chrome, use it!
 	console.log("Using Chrome");
+  var appBrowser = 'chrome';
    	// XHook - v1.3.0 - https://github.com/jpillora/xhook
 	// Jaime Pillora <dev@jpillora.com> - MIT Copyright 2014
 	(function(a,b){var c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z=[].indexOf||function(a){for(var b=0,c=this.length;c>b;b++)if(b in this&&this[b]===a)return b;return-1};r=a.document,d="before",c="after",l="readyState",k="addEventListener",j="removeEventListener",g="dispatchEvent",o="XMLHttpRequest",h="FormData",m=["load","loadend","loadstart"],e=["progress","abort","error","timeout"],u=parseInt((/msie (\d+)/.exec(navigator.userAgent.toLowerCase())||[])[1]),isNaN(u)&&(u=parseInt((/trident\/.*; rv:(\d+)/.exec(navigator.userAgent.toLowerCase())||[])[1])),(y=Array.prototype).indexOf||(y.indexOf=function(a){var b,c,d,e;for(b=d=0,e=this.length;e>d;b=++d)if(c=this[b],c===a)return b;return-1}),w=function(a,b){return Array.prototype.slice.call(a,b)},q=function(a){return"returnValue"===a||"totalSize"===a||"position"===a},t=function(a,b){var c,d;for(c in a)if(d=a[c],!q(c))try{b[c]=a[c]}catch(e){}return b},v=function(a,b,c){var d,e,f,h;for(e=function(a){return function(d){var e,f,h;e={};for(f in d)q(f)||(h=d[f],e[f]=h===b?c:h);return c[g](a,e)}},f=0,h=a.length;h>f;f++)d=a[f],b["on"+d]=e(d)},s=function(a){var b;if(null!=r.createEventObject)return b=r.createEventObject(),b.type=a,b;try{return new Event(a)}catch(c){return{type:a}}},f=function(a){var c,d,e;return d={},e=function(a){return d[a]||[]},c={},c[k]=function(a,c,f){d[a]=e(a),d[a].indexOf(c)>=0||(f=f===b?d[a].length:f,d[a].splice(f,0,c))},c[j]=function(a,c){var f;return a===b?void(d={}):(c===b&&(d[a]=[]),f=e(a).indexOf(c),void(-1!==f&&e(a).splice(f,1)))},c[g]=function(){var d,f,g,h,i,j,k,l;for(d=w(arguments),f=d.shift(),a||(d[0]=t(d[0],s(f))),h=c["on"+f],h&&h.apply(b,d),l=e(f).concat(e("*")),g=j=0,k=l.length;k>j;g=++j)i=l[g],i.apply(b,d)},a&&(c.listeners=function(a){return w(e(a))},c.on=c[k],c.off=c[j],c.fire=c[g],c.once=function(a,b){var d;return d=function(){return c.off(a,d),b.apply(null,arguments)},c.on(a,d)},c.destroy=function(){return d={}}),c},x=f(!0),x.EventEmitter=f,x[d]=function(a,b){if(a.length<1||a.length>2)throw"invalid hook";return x[k](d,a,b)},x[c]=function(a,b){if(a.length<2||a.length>3)throw"invalid hook";return x[k](c,a,b)},x.enable=function(){a[o]=n},x.disable=function(){a[o]=x[o]},p=x.headers=function(a,b){var c,d,e,f,g,h,i,j,k;switch(null==b&&(b={}),typeof a){case"object":d=[];for(e in a)g=a[e],f=e.toLowerCase(),d.push(""+f+":	"+g);return d.join("\n");case"string":for(d=a.split("\n"),i=0,j=d.length;j>i;i++)c=d[i],/([^:]+):\s*(.+)/.test(c)&&(f=null!=(k=RegExp.$1)?k.toLowerCase():void 0,h=RegExp.$2,null==b[f]&&(b[f]=h));return b}},i=a[h],i&&(x[h]=i,a[h]=function(a){var b;this.fd=a?new i(a):new i,this.form=a,b=[],Object.defineProperty(this,"entries",{get:function(){var c;return c=a?w(a.querySelectorAll("input,select")).filter(function(a){var b;return"checkbox"!==(b=a.type)&&"radio"!==b||a.checked}).map(function(a){return[a.name,"file"===a.type?a.files:a.value]}):[],c.concat(b)}}),this.append=function(a){return function(){var c;return c=w(arguments),b.push(c),a.fd.append.apply(a.fd,c)}}(this)}),x[o]=a[o],n=a[o]=function(){var b,i,j,n,q,r,s,w,y,A,B,C,D,E,F,G,H;return b=-1,H=new x[o],A={},D=null,r=void 0,E=void 0,B=void 0,y=function(){var a,c,d,e;if(B.status=D||H.status,D===b&&10>u||(B.statusText=H.statusText),D!==b){e=p(H.getAllResponseHeaders());for(a in e)d=e[a],B.headers[a]||(c=a.toLowerCase(),B.headers[c]=d)}},w=function(){"responseText"in H&&(B.text=H.responseText),"responseXML"in H&&(B.xml=H.responseXML),"response"in H&&(B.data=H.response)},G=function(){q.status=B.status,q.statusText=B.statusText},F=function(){"text"in B&&(q.responseText=B.text),"xml"in B&&(q.responseXML=B.xml),"data"in B&&(q.response=B.data)},n=function(a){for(;a>i&&4>i;)q[l]=++i,1===i&&q[g]("loadstart",{}),2===i&&G(),4===i&&(G(),F()),q[g]("readystatechange",{}),4===i&&setTimeout(j,0)},j=function(){r||q[g]("load",{}),q[g]("loadend",{}),r&&(q[l]=0)},i=0,C=function(a){var b,d;return 4!==a?void n(a):(b=x.listeners(c),d=function(){var a;return b.length?(a=b.shift(),2===a.length?(a(A,B),d()):3===a.length&&A.async?a(A,B,d):d()):n(4)},void d())},q=A.xhr=f(),H.onreadystatechange=function(){try{2===H[l]&&y()}catch(a){}4===H[l]&&(E=!1,y(),w()),C(H[l])},s=function(){r=!0},q[k]("error",s),q[k]("timeout",s),q[k]("abort",s),q[k]("progress",function(){3>i?C(3):q[g]("readystatechange",{})}),v(e,H,q),("withCredentials"in H||x.addWithCredentials)&&(q.withCredentials=!1),q.status=0,q.open=function(a,b,c,d,e){i=0,r=!1,E=!1,A.headers={},A.headerNames={},A.status=0,B={},B.headers={},A.method=a,A.url=b,A.async=c!==!1,A.user=d,A.pass=e,C(1)},q.send=function(b){var c,e,f,g,i,j,k,l;for(l=["type","timeout","withCredentials"],j=0,k=l.length;k>j;j++)e=l[j],f="type"===e?"responseType":e,f in q&&(A[e]=q[f]);A.body=b,i=function(){var b,c,d,g,i,j;for(E=!0,H.open(A.method,A.url,A.async,A.user,A.pass),i=["type","timeout","withCredentials"],d=0,g=i.length;g>d;d++)e=i[d],f="type"===e?"responseType":e,e in A&&(H[f]=A[e]);j=A.headers;for(b in j)c=j[b],H.setRequestHeader(b,c);a[h]&&A.body instanceof a[h]&&(A.body=A.body.fd),H.send(A.body)},c=x.listeners(d),(g=function(){var a,b;return c.length?(a=function(a){return"object"!=typeof a||"number"!=typeof a.status&&"number"!=typeof B.status?void g():(t(a,B),z.call(a,"data")<0&&(a.data=a.response||a.text),void C(4))},a.head=function(a){return t(a,B),C(2)},a.progress=function(a){return t(a,B),C(3)},b=c.shift(),1===b.length?a(b(A)):2===b.length&&A.async?b(A,a):a()):i()})()},q.abort=function(){D=b,E?H.abort():q[g]("abort",{})},q.setRequestHeader=function(a,b){var c,d;c=null!=a?a.toLowerCase():void 0,d=A.headerNames[c]=A.headerNames[c]||a,A.headers[d]&&(b=A.headers[d]+", "+b),A.headers[d]=b},q.getResponseHeader=function(a){var b;return b=null!=a?a.toLowerCase():void 0,B.headers[b]},q.getAllResponseHeaders=function(){return p(B.headers)},H.overrideMimeType&&(q.overrideMimeType=function(){return H.overrideMimeType.apply(H,arguments)}),H.upload&&(q.upload=A.upload=f(),v(e.concat(m),H.upload,q.upload)),q},"function"==typeof this.define&&this.define.amd?define("xhook",[],function(){return x}):(this.exports||this).xhook=x}).call(this,window);
@@ -92,6 +96,7 @@ if (bowser.chrome) { // XHook is pretty great, so if it's Chrome, use it!
 else if(bowser.firefox) //Firefox doesn't like XHook for CORS...
 {
 	console.log("Using Firefox");
+  var appBrowser = 'firefox';
 	
 	(function() {
 	    var XHR = XMLHttpRequest.prototype;
@@ -122,6 +127,11 @@ else if(bowser.firefox) //Firefox doesn't like XHook for CORS...
 
 }
 
+if (typeof(isChromeExtension) !== "undefined" || typeof(isFirefoxExtension) !== "undefined")
+    var appContext = 'extension';
+  else
+    var appContext = 'userscript';
+
 $(window).bind('hashchange', readHash);
 
 function readHash()
@@ -133,7 +143,7 @@ function readHash()
         {
             cID = res[1];
             thisClass = getClassById(cID);
-            //do new class stuff
+            dojoPlus();
         }
     }
 
@@ -158,11 +168,12 @@ var numStudents = 999999;
 var navShowing = true;
 var checkForBehaviors;
 var checkForSelected;
+var checkForAbsences, checkForAbsences2;
 var numSelected = 0;
 var checkForPopup;
 var oldZ = 0;
 
-var options = [];
+//var dojoOptions = [];
 var isPositive = false;
 var isNegative = false;
 var iii = 0;
@@ -174,6 +185,14 @@ var classes = [];
 var thisClass = new dojoClass({});
 var cID = '';
 var overlapThreshold = "85%"; 
+
+var dojoOptions = { 
+  _classes: {
+    '54ca910ce1b0028d5e8f0976': {
+      hideExtras: true
+      }
+    }
+  };
 
 
 function evalAjax(u, m, r){
@@ -336,10 +355,11 @@ function dojoCoord(x, y) {
     };
 }
 
-function dojoColor(r, g, b) {
+function dojoColor(r, g, b, n) {
     this.r = r;
     this.g = g;
     this.b = b;
+    this.name = typeof(n) !== "undefined" ? n : "r"+r+"g"+g+"b"+b;
     this.rgb = function() {
         return "rgb(" + this.r + "," + this.g + "," + this.b + ")";
     }
@@ -399,14 +419,16 @@ function getClassById(e)
     return objectFromArray(classes,'_id',e);
 }
 
-var purple = new dojoColor(170,0,255);
-var blue = new dojoColor(0,170,255);
-var green = new dojoColor(0,218,60);
-var yellow = new dojoColor(244,243,40);
-var orange = new dojoColor(253,134,3);
-var red = new dojoColor(223,21,26);
-var black = new dojoColor(0,0,0);
-var white = new dojoColor(255,255,255);
+var purple = new dojoColor(170,0,255,'purple');
+var blue = new dojoColor(0,170,255,'blue');
+var green = new dojoColor(0,218,60,'green');
+var yellow = new dojoColor(244,243,40,'yellow');
+var orange = new dojoColor(253,134,3,'orange');
+var red = new dojoColor(223,21,26,'red');
+var black = new dojoColor(2,8,13,'black');
+var white = new dojoColor(247,253,250,'white');
+
+var colors = [purple, blue, green, yellow, orange, red];
 
 
 var breakPoints = [{ points: -10, color: red, text:black }, {points:-5, color:orange, text:black}, {points:-1, color:yellow, text:black}, {points:0, color:green, text:white}, {points:5, color:blue, text:white}, {points:10, color:purple, text:white}];
@@ -446,7 +468,7 @@ var observer2 = new MutationObserver(function(mutations) {
     });
 });
 
-readHash();
+
 
 function getBreakpoint(p){
      var amDone = false;
@@ -464,44 +486,95 @@ function getBreakpoint(p){
 }
 
 function colorize(s, oldP, newP){
+  
     var thisBubble = s;
     var thisBubblesMom = thisBubble.parentNode.parentNode;
-    //console.newLog(thisBubblesMom);
    
     var i=newP;
     
             var bp = getBreakpoint(i);
             var bpOld = getBreakpoint(oldP);
 
-          if(oldP !== newP) TweenMax.fromTo(thisBubblesMom, 0.5,{backgroundColor:bpOld.color.rgba(0.01)},{backgroundColor:bp.color.rgba(0.7), onComplete: function(){ TweenMax.to(this.target,10,{backgroundColor: bp.color.rgba(0.01)}); }});
-            
+
+         //   TweenMax.set(thisBubble.parentNode, {css:{perspective:600}});
+          //  TweenMax.set(thisBubblesMom, {css:{perspective:600}});
+         //   TweenMax.set(thisBubblesMom.parentNode, {css:{perspective:600}});
+
+         var originalClasses = thisBubblesMom.className;
+
+          //if(oldP !== newP) 
+         /*   TweenMax.fromTo(
+              thisBubblesMom, 
+              0.5,
+              {
+                force3D: "auto", 
+                backgroundColor:bpOld.color.rgba(0.01)
+              },
+              {
+                force3D: "auto", 
+                backgroundColor:bp.color.rgba(0.7), 
+                onComplete: function(){ 
+                  TweenMax.to(
+                    this.target,
+                    10,
+                    {
+                      force3D: "auto", 
+                      backgroundColor: white.rgb(),
+                      onComplete: function(){
+                        this.target.style.transform = '';
+                        this.target.parentNode.style.transform = '';
+                      }
+                    }
+                    ); 
+                }
+              }
+              );
+            */
+       
           
           if (bp.color.rgb() !== bpOld.color.rgb() || oldP === newP)
           {
             var oldZ = thisBubble.parentNode.parentNode.parentNode.style.zIndex;
             thisBubble.parentNode.parentNode.parentNode.style.zIndex = "999999";
             TweenMax.to(thisBubble, 0.5, {
+              force3D: "auto", 
                 scale: 1.5,
                 yoyo: true,
                 repeat: 1,
                 onComplete: function() {
                     thisBubble.parentNode.parentNode.parentNode.style.zIndex = oldZ;
+                   // this.target.style.transform = '';
                 }
             });
           
             TweenMax.to(thisBubble, 1, {
+              force3D: "auto", 
                 backgroundColor: bp.color.rgb(),
                 color: bp.text.rgb()
             });
-            TweenMax.to(thisBubblesMom, 1, {borderColor: bp.color.rgba(0.5)});
+            TweenMax.to( thisBubblesMom, 1, {force3D: "auto", borderColor: bp.color.rgba(0.5)});
            
 
           }
           if(oldP !== newP) 
             TweenMax.fromTo(thisBubble, 3, {
+              force3D: "auto", 
                 rotationX: "0deg",
-               }, {rotationX: "1800deg",  ease: Elastic.easeOut.config(1, 0.4)}
+               }, {force3D: "auto",  rotationX: "1800deg",  ease: Elastic.easeOut.config(1, 0.4), onComplete: function(){
+              //  this.target.style.transform = '';
+              }}
             );
+
+
+              TweenMax.fromTo(thisBubblesMom.children[3].children[0], 0.5, {boxShadow:"0px 0px 1px 3px "+bp.color.rgba(0.5)},{boxShadow:"0px 0px 10px 5px "+bp.color.rgba(0.9), yoyo: true, repeat: 11, onComplete: function() {this.target.style.transform = ''; this.target.parentNode.style.transform='';  }});
+
+              //TweenMax.set(thisBubblesMom.parentNode, {className:"+=highlightInset_"+bp.color.name});
+
+              TweenMax.fromTo(thisBubblesMom.parentNode, 0.5, {boxShadow:"0px 0px 1px 3px "+bp.color.rgba(0.01)},{boxShadow:"0px 0px 10px 5px "+bp.color.rgba(0.9), yoyo: true, repeat: 11, onComplete: function() {this.target.style.transform = ''; this.target.parentNode.style.transform='';
+           //   TweenMax.set(thisBubblesMom.parentNode, {className:"-=highlightInset_"+bp.color.name});  
+            }});
+
+            
 
 
             
@@ -529,17 +602,64 @@ function mouseWheelHandler(e) {
     this.click();
 }
 
-addGlobalStyle(" .hotKey {opacity: 0.05;}"
+function hideExtras(h){
+  h = typeof(h) === "undefined" ? !navShowing : h;
+
+              if(h !== navShowing)
+                {
+                    $('div.navbar.navbar-static-top.mojette-navbar').toggle();
+                    $('.help-tab[target=_blank]').toggle();
+                    // $('div.help-container').toggle();
+                    if (navShowing === true) {
+                        document.getElementById('hide_stuff').innerHTML = '<span class="glyphicon glyphicon-eye-open"></span>';
+                        navShowing = false;
+                    } else {
+                        document.getElementById('hide_stuff').innerHTML = '<span class="glyphicon glyphicon-eye-close"></span>Hide Extras';
+                        navShowing = true;
+                    }
+                  }
+}
+
+var styleSheet = " .hotKey {opacity: 0.05;}"
     +" .hotKey:hover {opacity: 1.0;}"
     +" .positive-behaviors-list, .negative-behaviors-list { display: visible; } "
-    +" .leaderboardStudentTile:hover { box-shadow: 0px 0px 4px 30px rgba(20,210,40,0.2) inset; }  "
+    +" .leaderboardStudentTile { padding:10px; }  "
+    +" .leaderboardStudentTile:hover { box-shadow:0px 0px 10px 10px rgba(20,210,40,0.2) inset, 0px 0px 2px 5px rgba(20,210,40,0.2); }  "
+    +" .leaderboard-student-tile {display:none; margin:0}"
     +" .leaderboard-student-tile .bubble .student-number.zero {display:block; top:-16px; right:-16px;} "
     +" .leaderboard-student-tile.absent .bubble .student-number {visibility:hidden;}"
     +" .leaderboard-student-tile.absent {opacity:0.1;}"
     +" .leaderboard-student-tile .bubble .student-number.negative {font-size:15px;}"
-    +" .highlight { box-shadow: 0px 0px 4px 30px rgba(20,210,40,0.2) inset;}");
+    +" .highlight { box-shadow: 0px 0px 4px 30px rgba(20,210,40,0.2) inset;}"
+    +" .leaderboard-student-tile {background-color: "+white.rgb()+"; }"
+    +" .highlight_none {box-shadow: none;}";
+
+colors.forEach(function(c){
+  styleSheet += " .highlight_"+c.name+" {box-shadow:0px 0px 2px 5px "+c.rgba(0.3)+";}";
+  styleSheet += " .highlightInset_"+c.name+" {box-shadow:0px 0px 2px 10px "+c.rgba(0.2)+" inset;}";
+});
+
+addGlobalStyle(styleSheet);
    
    // +" span.student-number.negative::first-letter {font-size:0px;}"
+
+var checkHelpContainer = setInterval(function() {
+  if(!$('#hide_stuff').length && $('.help-container').length)
+               {
+                clearInterval(checkHelpContainer);
+                var li = document.createElement("a");
+                li.className = 'help-tab';
+                li.id = 'hide_stuff';
+                li.innerHTML = '<span class="glyphicon glyphicon-eye-close"></span>Hide Extras';
+                var t = document.getElementsByClassName("help-container").item(0);
+
+                
+
+                t.appendChild(li);
+                li.addEventListener('click', hideExtras);
+
+            }
+        }, 200);
 
 
 function dojoPlus()
@@ -551,11 +671,13 @@ function dojoPlus()
                // clearInterval(checkExist);
                numStudents = 999999;
 
+               if(dojoOptions.hasOwnProperty(thisClass._id) && dojoOptions._classes[thisClass._id].hideExtras)
+                  hideExtras(true);
 
              
 
 
-                $(".leaderboard-student-tile").wrap('<div class="leaderboardStudentTile" style="display:inline-block; position:absolute; border-radius:5px;"></div>');
+                $(".leaderboard-student-tile").wrap('<div class="leaderboardStudentTile" style="display:inline-block; position:absolute; border-radius:5px; top:-300px; left:50%;"></div>').show();
 
                 // $('.first').hisResText();
                 //  $('.last').hisResText();
@@ -781,7 +903,7 @@ function dojoPlus()
 
                         row = column > 2 ? row + 1 : row;
                         column = column > 2 ? 0 : column + 1;
-                        console.log("Row: "+row+" Column: "+column);
+                       
                         
                     }
                 }
@@ -885,8 +1007,48 @@ function dojoPlus()
                     }
                 }, 200);
 
+                checkForAbsences = setInterval(function() {
+                
+                                    if ($('#save_attendance').length) {
+                
+                                        clearInterval(checkForAbsences);
+
+                                        checkForAbsences2 = setInterval(function() {
+                
+
+                                            if ($('#save_attendance').length) {
+                                                return false;
+                                            } else {
+                
+                                                clearInterval(checkForAbsences2);
+                                                
+                                                for (i = 0; i < tiles.length; i++) {
+                                                  
+                                                  var thisBubble = tiles[i].children[3].children[0];
+
+                                                  toVv = isNaN(parseInt(thisBubble.textContent)) ? 0 : parseInt(thisBubble.textContent) * 1;
+                                                  
+                                                  colorize(thisBubble,toVv,toVv);
+
+                                                  observer.observe(thisBubble, {
+                                                      characterData: true,
+                                                      characterDataOldValue: true,
+                                                      subtree: true
+                                                  });
+
+                                                  //     names[i] = tiles[i].children[0][1].textContent;   
+                                              }
+
+
+                                            }
+
+                                        }, 200);
+                                    }
+                                }, 200);
+
                 checkForPopup = setInterval(function() {
                     if (!popupVisible && $('.award-notification-view').length) {
+                    //  console.log("popup trigger");
                         
                             if (isPositive) {
                               
@@ -1002,7 +1164,8 @@ script.addEventListener('load', function() {
     script2.addEventListener('load', function() {
 
       
-        dojoPlus();
+        //dojoPlus();
+        readHash();
 
 
 
@@ -1011,29 +1174,5 @@ script.addEventListener('load', function() {
 }, false);
 document.body.appendChild(script);
 
-var checkHelpContainer = setInterval(function() {
-  if(!$('#hide_stuff').length && $('.help-container').length)
-               {
-                clearInterval(checkHelpContainer);
-                var li = document.createElement("a");
-                li.className = 'help-tab';
-                li.id = 'hide_stuff';
-                li.innerHTML = '<span class="glyphicon glyphicon-eye-close"></span>Hide Extras';
-                var t = document.getElementsByClassName("help-container").item(0);
 
-                t.appendChild(li);
-                li.addEventListener('click', function() {
-                    $('div.navbar.navbar-static-top.mojette-navbar').toggle();
-                    $('.help-tab[target=_blank]').toggle();
-                    // $('div.help-container').toggle();
-                    if (navShowing === true) {
-                        document.getElementById('hide_stuff').innerHTML = '<span class="glyphicon glyphicon-eye-open"></span>';
-                        navShowing = false;
-                    } else {
-                        document.getElementById('hide_stuff').innerHTML = '<span class="glyphicon glyphicon-eye-close"></span>Hide Extras';
-                        navShowing = true;
-                    }
 
-                });
-            }
-        }, 200);
