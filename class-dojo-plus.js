@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Class Dojo Plus
 // @namespace    https://greasyfork.org/en/scripts/7873-class-dojo-plus
-// @version      2015.05.27.01
+// @version      2015.05.27.02
 // @description  Useful hacks for the already excellent Class Dojo
 // @author       Ryan Meyers
 // @icon          http://appsandoranges.github.io/Class-Dojo-Plus/images/icon.png
@@ -1136,7 +1136,7 @@ function dojoPlus()
 
 
                 $(document).keyup(function(e) {
-                    if (!$('input[type=text]').length) {
+                    if (!$('input[type=text]').length && !$('textarea').length) {
 
 
                         if ($('.behavior-tile').length) {
@@ -1198,7 +1198,7 @@ function dojoPlus()
                 });
 
                 $(document).keydown(function(e) {
-                    if (!$('input[type=text]').length)
+                    if (!$('input[type=text]').length  && !$('textarea').length)
                         e.preventDefault();
 
                 });
