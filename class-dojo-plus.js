@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Class Dojo Plus
 // @namespace    https://greasyfork.org/en/scripts/7873-class-dojo-plus
-// @version      2015.05.22.01
+// @version      2015.05.27.01
 // @description  Useful hacks for the already excellent Class Dojo
 // @author       Ryan Meyers
 // @icon          http://appsandoranges.github.io/Class-Dojo-Plus/images/icon.png
@@ -260,6 +260,8 @@ var numStudents = 999999;
 var navShowing = true;
 var checkForBehaviors;
 var checkForSelected;
+var checkForSettings;
+var settingsVisible = false;
 var checkForAbsences, checkForAbsences2;
 var numSelected = 0;
 var checkForPopup;
@@ -1264,6 +1266,140 @@ function dojoPlus()
                         popupVisible = false;
                     }
                 }, 200);
+                
+                checkForSettings = setInterval(function() {
+                    if ($('.special-edit-class-nav-for-ie').length) {
+                    //  console.log("popup trigger");
+
+                         if(!settingsVisible)
+                         {
+                             console.log('settings check');
+                             $('.special-edit-class-nav-for-ie').append('<li id="cdp_settings" class><a href="#">CD+</a></li>');
+                             $('#cdp_settings').click(function(event){
+                                 
+                                
+                             });
+                             $('#cdp_settings a').click(function(event){
+                                 event.stopPropagation();
+                                  $('.special-edit-class-nav-for-ie').parent().parent().parent().children()[1].remove();
+                                 var settings_inner =  '<div id="settings_tab_parent" class="invite-parents">'
+                                                      +' <div class="modal-body" id="settings_tab_invite">'
+                                                      
+                                                      +'  <div class="student">'
+                                                      +'   <div class="clearfix">'
+                                                      +'    <div class="col-sm-5">'
+                                                      +'     <span class="student-block-name h4"><strong>Breakpoint for </strong>Red</span>'
+                                                      +'    </div>'
+                                                      +'    <div class="col-sm-7 parent-actions">'
+                                                      +'     <input class="form-control" id="redBreak" name="redBreak" type="text" placeholder="Red Breakpoint" style="color: '
+                                                      +       breakPoints[0].text.rgb()
+                                                      +       '; background-color: '
+                                                      +       breakPoints[0].color.rgb()
+                                                      +'      ">'
+                                                      +'    </div>'
+                                                      +'   </div>'
+                                                      +'  </div>'
+                                 
+                                                      +'  <div class="student">'
+                                                      +'   <div class="clearfix">'
+                                                      +'    <div class="col-sm-5">'
+                                                      +'     <span class="student-block-name h4"><strong>Breakpoint for </strong>Orange</span>'
+                                                      +'    </div>'
+                                                      +'    <div class="col-sm-7 parent-actions">'
+                                                      +'     <input class="form-control" id="orangeBreak" name="orangeBreak" type="text" placeholder="Orange Breakpoint" style="color: '
+                                                      +       breakPoints[1].text.rgb()
+                                                      +       '; background-color: '
+                                                      +       breakPoints[1].color.rgb()
+                                                      +'      ">'
+                                                      +'    </div>'
+                                                      +'   </div>'
+                                                      +'  </div>'
+                                 
+                                                      +'  <div class="student">'
+                                                      +'   <div class="clearfix">'
+                                                      +'    <div class="col-sm-5">'
+                                                      +'     <span class="student-block-name h4"><strong>Breakpoint for </strong>Yellow</span>'
+                                                      +'    </div>'
+                                                      +'    <div class="col-sm-7 parent-actions">'
+                                                      +'     <input class="form-control" id="yellowBreak" name="yellowBreak" type="text" placeholder="Yellow Breakpoint" style="color: '
+                                                      +       breakPoints[2].text.rgb()
+                                                      +       '; background-color: '
+                                                      +       breakPoints[2].color.rgb()
+                                                      +'      ">'
+                                                      +'    </div>'
+                                                      +'   </div>'
+                                                      +'  </div>'
+                                 
+                                                      +'  <div class="student">'
+                                                      +'   <div class="clearfix">'
+                                                      +'    <div class="col-sm-5">'
+                                                      +'     <span class="student-block-name h4"><strong>Breakpoint for </strong>Green</span>'
+                                                      +'    </div>'
+                                                      +'    <div class="col-sm-7 parent-actions">'
+                                                      +'     <input class="form-control" id="greenBreak" name="greenBreak" type="text" placeholder="Green Breakpoint" style="color: '
+                                                      +       breakPoints[3].text.rgb()
+                                                      +       '; background-color: '
+                                                      +       breakPoints[3].color.rgb()
+                                                      +'      ">'
+                                                      +'    </div>'
+                                                      +'   </div>'
+                                                      +'  </div>'
+                                 
+                                                      +'  <div class="student">'
+                                                      +'   <div class="clearfix">'
+                                                      +'    <div class="col-sm-5">'
+                                                      +'     <span class="student-block-name h4"><strong>Breakpoint for </strong>Blue</span>'
+                                                      +'    </div>'
+                                                      +'    <div class="col-sm-7 parent-actions">'
+                                                      +'     <input class="form-control" id="blueBreak" name="blueBreak" type="text" placeholder="Blue Breakpoint" style="color: '
+                                                      +       breakPoints[4].text.rgb()
+                                                      +       '; background-color: '
+                                                      +       breakPoints[4].color.rgb()
+                                                      +'      ">'
+                                                      +'    </div>'
+                                                      +'   </div>'
+                                                      +'  </div>'
+                                 
+                                                      +'  <div class="student">'
+                                                      +'   <div class="clearfix">'
+                                                      +'    <div class="col-sm-5">'
+                                                      +'     <span class="student-block-name h4"><strong>Breakpoint for </strong>Purple</span>'
+                                                      +'    </div>'
+                                                      +'    <div class="col-sm-7 parent-actions">'
+                                                      +'     <input class="form-control" id="purpleBreak" name="purpleBreak" type="text" placeholder="Purple Breakpoint" style="color: '
+                                                      +       breakPoints[5].text.rgb()
+                                                      +       '; background-color: '
+                                                      +       breakPoints[5].color.rgb()
+                                                      +'      ">'
+                                                      +'    </div>'
+                                                      +'   </div>'
+                                                      +'  </div>'
+                                 
+                                                      +' </div>'
+                                                      +'</div>';
+                                 $('.special-edit-class-nav-for-ie').parent().parent().parent().append(settings_inner);
+                                 $('#redBreak').val(breakPoints[0].points).change(function(){ localStorage.setItem('redBreak', $('#redBreak').val()); breakPoints[0].points = $('#redBreak').val();});
+                                 $('#orangeBreak').val(breakPoints[1].points).change(function(){ localStorage.setItem('orangeBreak', $('#orangeBreak').val()); breakPoints[1].points = $('#orangeBreak').val();});
+                                 $('#yellowBreak').val(breakPoints[2].points).change(function(){ localStorage.setItem('yellowBreak', $('#yellowBreak').val()); breakPoints[2].points = $('#yellowBreak').val();});
+                                 $('#greenBreak').val(breakPoints[3].points).change(function(){ localStorage.setItem('greenBreak', $('#greenBreak').val()); breakPoints[3].points = $('#greenBreak').val();});
+                                 $('#blueBreak').val(breakPoints[4].points).change(function(){ localStorage.setItem('blueBreak', $('#blueBreak').val()); breakPoints[4].points = $('#blueBreak').val();});
+                                 $('#purpleBreak').val(breakPoints[5].points).change(function(){ localStorage.setItem('purpleBreak', $('#purpleBreak').val()); breakPoints[5].points = $('#purpleBreak').val();});
+                                 
+                                 
+                                 $('.special-edit-class-nav-for-ie').children().removeClass("active");
+                                 $('#cdp_settings').addClass("active");
+                                 return false;
+                             });
+                             // do some settings
+                             
+                         }
+
+                        settingsVisible = true;
+                        //clearInterval(checkforBehaviors);
+                    } else {
+                        settingsVisible = false;
+                    }
+                }, 200);
 
 
                 checkForSelected = setInterval(function() {
@@ -1365,6 +1501,44 @@ script.addEventListener('load', function() {
 
 
         //dojoPlus();
+        if (localStorage.getItem('redBreak') == null )
+        {
+            localStorage.setItem('redBreak', -10);
+        }
+        breakPoints[0].points = localStorage.getItem('redBreak');
+        
+        if (localStorage.getItem('orangeBreak') == null )
+        {
+            localStorage.setItem('orangeBreak', -5);
+        }
+        breakPoints[1].points = localStorage.getItem('orangeBreak');
+        
+        if (localStorage.getItem('yellowBreak') == null )
+        {
+            localStorage.setItem('yellowBreak', -1);
+        }
+        breakPoints[2].points = localStorage.getItem('yellowBreak');
+        
+        if (localStorage.getItem('greenBreak') == null )
+        {
+            localStorage.setItem('greenBreak', 0);
+        }
+        breakPoints[3].points = localStorage.getItem('greenBreak');
+        
+        if (localStorage.getItem('blueBreak') == null )
+        {
+            localStorage.setItem('blueBreak', 5);
+        }
+        breakPoints[4].points = localStorage.getItem('blueBreak');
+        
+        if (localStorage.getItem('purpleBreak') == null )
+        {
+            localStorage.setItem('purpleBreak', 10);
+        }
+        breakPoints[5].points = localStorage.getItem('purpleBreak');
+          
+           
+        
         readHash();
 
 
