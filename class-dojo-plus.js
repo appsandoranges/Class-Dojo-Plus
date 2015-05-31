@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Class Dojo Plus
 // @namespace    https://greasyfork.org/en/scripts/7873-class-dojo-plus
-// @version      2015.05.31
+// @version      2015.05.31.02
 // @description  Useful hacks for the already excellent Class Dojo
 // @author       Ryan Meyers
 // @icon          http://appsandoranges.github.io/Class-Dojo-Plus/images/icon.png
@@ -268,6 +268,7 @@ var checkForPopup;
 var oldZ = 0;
 var positiveQuickTile = null;
 var negativeQuickTile = null;
+var numSeatingCharts = 1;
 
 //var dojoOptions = [];
 var isPositive = false;
@@ -704,7 +705,7 @@ function hideExtras(h){
  sizer();
 }
 function changeClassroomConfiguration(){
-  classroomConfiguration = classroomConfiguration < 3 ? classroomConfiguration + 1 : 1;
+  classroomConfiguration = classroomConfiguration < numSeatingCharts ? classroomConfiguration + 1 : 1;
   document.getElementById('classroom_configuration').innerHTML = classroomConfiguration;
   moveStudents();
 }
@@ -1285,6 +1286,17 @@ function dojoPlus()
                                  var settings_inner =  '<div id="settings_tab_parent" class="invite-parents">'
                                                       +' <div class="modal-body" id="settings_tab_invite">'
                                                       
+                                                       +'  <div class="student">'
+                                                      +'   <div class="clearfix">'
+                                                      +'    <div class="col-sm-5">'
+                                                      +'     <span class="student-block-name h4">How many seating arrangements?</span>'
+                                                      +'    </div>'
+                                                      +'    <div class="col-sm-7 parent-actions">'
+                                                      +'     <input class="form-control" id="numSeatingCharts" name="numSeatingCharts" type="text" placeholder="3" >'
+                                                      +'    </div>'
+                                                      +'   </div>'
+                                                      +'  </div>'
+                                                      
                                                       +'  <div class="student">'
                                                       +'   <div class="clearfix">'
                                                       +'    <div class="col-sm-5">'
@@ -1384,6 +1396,7 @@ function dojoPlus()
                                  $('#greenBreak').val(breakPoints[3].points).change(function(){ localStorage.setItem('greenBreak', $('#greenBreak').val()); breakPoints[3].points = $('#greenBreak').val();});
                                  $('#blueBreak').val(breakPoints[4].points).change(function(){ localStorage.setItem('blueBreak', $('#blueBreak').val()); breakPoints[4].points = $('#blueBreak').val();});
                                  $('#purpleBreak').val(breakPoints[5].points).change(function(){ localStorage.setItem('purpleBreak', $('#purpleBreak').val()); breakPoints[5].points = $('#purpleBreak').val();});
+                                 $('#numSeatingCharts').val(numSeatingCharts).change(function(){ localStorage.setItem('numSeatingCharts', $('#numSeatingCharts').val()); numSeatingCharts = $('#numSeatingCharts').val();});
                                  
                                  
                                  $('.special-edit-class-nav-for-ie').children().removeClass("active");
@@ -1536,6 +1549,15 @@ script.addEventListener('load', function() {
             localStorage.setItem('purpleBreak', 10);
         }
         breakPoints[5].points = localStorage.getItem('purpleBreak');
+        
+        if (localStorage.getItem('numSeatingCharts') == null )
+        {
+            localStorage.setItem('numSeatingCharts', 3);
+        }
+        numSeatingCharts = localStorage.getItem('numSeatingCharts');
+        
+        
+        
         var imageObj = new Image();
          imageObj.src = '//upload.wikimedia.org/wikipedia/commons/7/7c/Lightblue_empty_grid.svg';
           
