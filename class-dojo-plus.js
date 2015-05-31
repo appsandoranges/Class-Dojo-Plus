@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Class Dojo Plus
 // @namespace    https://greasyfork.org/en/scripts/7873-class-dojo-plus
-// @version      2015.05.27.02
+// @version      2015.05.31
 // @description  Useful hacks for the already excellent Class Dojo
 // @author       Ryan Meyers
 // @icon          http://appsandoranges.github.io/Class-Dojo-Plus/images/icon.png
@@ -1536,6 +1536,8 @@ script.addEventListener('load', function() {
             localStorage.setItem('purpleBreak', 10);
         }
         breakPoints[5].points = localStorage.getItem('purpleBreak');
+        var imageObj = new Image();
+         imageObj.src = '//upload.wikimedia.org/wikipedia/commons/7/7c/Lightblue_empty_grid.svg';
           
            
         
